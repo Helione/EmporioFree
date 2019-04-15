@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}Página de Cadastro{% endblock %}
+
+{% block main %}
+
+     <div class="container">
+        <br><br><br>
+          <center>
+            <h2>Página de Cadastro</h2>
+              <br><br>
+              <h4>Informe Seus Dados</h4>
+
+            <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="Cadastrar">
+            <input type="hidden" name="next" value="{{ next }}">
+
+            </form>
+
+         </center>
+    </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

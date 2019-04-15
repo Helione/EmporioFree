@@ -1,0 +1,20 @@
+{% extends 'painel.html' %}
+{% block painel %} <!--block breadcrumb -->
+    {{ block.super }}
+    <li class="nav-item"> /  </li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'editar' %}"><i class="fas fa-tools"></i> Editar Conta</a></li>
+    <li class="nav-item"> /  </li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'editar_senha' %}"><i class="fas fa-lock"> </i> Editar Senha</a></li>
+{% endblock %}
+{% block painel_content%}<!--block dashboard_content -->
+        <form  class="form-group" method="post">
+            <h4>Editar Senha</h4>
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            {% if success %}
+            <p> A senha foi alterada com sucesso!</p>
+            {% endif %}
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+{% endblock %}

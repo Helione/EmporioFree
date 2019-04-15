@@ -1,0 +1,26 @@
+{% extends "painel.html" %}
+
+<nav>
+    <ul class="navbar nav navbar-expand-sm ">
+        {% block painel %}
+        <li class="nav-item">
+            <a class="nav-link" href ="{% url 'painel'%}"><i class="fas fa-address-card"> </i> Meu Painel </a>
+        </li>
+        {% endblock %}
+    </ul>
+</nav>
+
+    {% block menu_opcoes %}
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action active">
+        Sobre {{ produto }}
+      </a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Informações</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Anúncios</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Fórum de Dúvidas</a>
+      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Fornecedores</a>
+    </div>
+    {{ block.super }}
+    {% endblock %}
+
+

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load bootstrap%}
+
+{% load static %}
+
+{% block title %}ClickTec{% endblock %}
+
+{% block main %}
+        </br>
+        <hr class="featurette-divider">
+         <div class="col-md">
+              <div class="row featurette">
+				  <div class="col-md-7">
+					<h2 class="featurette-heading">Bem vindo a nossa loja virtual!!.</h2>
+					<p class="lead">Compre Produtos de forma simples e rápida.</p>
+				  </div>
+				  <div class="col-md-5">
+					<img class="featurette-image img-fluid mx-auto" src="{% static 'img/tecnologia.png' %}" data-src="holder.js/300x300/auto" alt="Generic placeholder image">
+				  </div>
+				</div>
+
+				<hr class="featurette-divider">
+
+				<div class="row featurette">
+				  <div class="col-md-7 order-md-2">
+					<h2 class="featurette-heading">Compre e se divirta <span class="text-muted">Você Merece!</span></h2>
+					<p class="lead">Compras divertidas e simplificadas para melhor atendimento.</p>
+				  </div>
+				  <div class="col-md-5 order-md-1">
+					<img class="featurette-image img-fluid mx-auto" src="{% static 'img/tecno.jpg' %}" data-src="holder.js/400x400/auto" alt="Generic placeholder image">
+				  </div>
+				</div>
+
+				<hr class="featurette-divider">
+
+				<div class="row featurette">
+				  <div class="col-md-7">
+					<h2 class="featurette-heading">Segurança e Qualidade. <span class="text-muted">Você Precisa!.</span></h2>
+					<p class="lead">Aqui você pode realizar as melhores compras, com segurança e qualidade.</p>
+				  </div>
+				  <div class="col-md-5">
+					<img class="featurette-image img-fluid mx-auto" src="{% static 'img/tecne.jpg' %}" data-src="holder.js/400x400/auto" alt="Generic placeholder image">
+				  </div>
+				</div>
+				<hr class="featurette-divider">
+    	</div>
+
+{% endblock %}
+{% block footer %}
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Compre Tec Aqui</font></font></span>
+      </div>
+    </footer>
+{% endblock %}

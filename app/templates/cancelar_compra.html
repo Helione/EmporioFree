@@ -1,0 +1,14 @@
+{% extends "app_painel.html" %}
+
+{% block painel_content %}
+
+<forma action="" method="post">
+    {% csrf_token %}
+    <h3>Tem certeza que deseja cancelar a compra?</h3>
+    <div>
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+        <a href="{% url 'anuncios' produto.slug %}" class="btn btn-secondary">Voltar</a>
+    </div>
+</forma>
+
+{% endblock %}

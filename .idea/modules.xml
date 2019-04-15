@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/clicktec.iml" filepath="$PROJECT_DIR$/.idea/clicktec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../linktec/.idea/linktec.iml" filepath="$PROJECT_DIR$/../linktec/.idea/linktec.iml" />
+    </modules>
+  </component>
+</project>

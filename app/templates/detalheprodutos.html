@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block title %}Produto{% endblock %}
+
+{% block main %}
+            <br><br><br><br>
+            <div class="col-md">
+                <div class="row featurette">
+                  <div class="col-md-7 order-md-2">
+                      <h2 class="featurette-heading"><a href="{{ produto.nome }}" title="">{{ produto }}</a></h2>
+                      <h1 class="card-title pricing-card-title">{{ produto.preco}}</h1>
+                      <p class="card-text mb-auto">{{ produto.descricao|linebreaks }}</p>
+                      <div class="btn-group">
+                            <a href="{% url 'comprar' produto.slug %}" class="btn btn-outline-info my-2 my-sm-0"> Comprar Agora</a>
+                            <a href="#" class="btn btn-info my-2 my-sm-0"> Adicionar ao Carrinho</a>
+                      </div>
+
+                  </div>
+                  <div class="col-md-5 order-md-1">
+                        <a href="{{produto.nome}}">
+							  {% if produto.foto %}
+							  <img class="featurette-image img-fluid mx-auto"src="{{produto.foto.url}}" alt="{{produto.nome}}" width="250" height="250"/>
+                              <br><br>
+							  {% else %}
+							  <img class="featurette-image img-fluid mx-auto"src="{% static 'img/logoClickTec.png' %}" alt="{{produto.nome}}" width="200" height="250">
+							  <br><br>
+							  {% endif %}
+                        </a>
+                  </div>
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+
+{% endblock %}
+{% block footer %}
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Compre Tec Aqui</font></font></span>
+      </div>
+    </footer>
+{% endblock %}

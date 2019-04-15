@@ -1,0 +1,10 @@
+{% for compra in compras %}
+<td>
+    <a href="{{ compra.produto.get_slug_field }}" class="list-group-item list-group-item-action">{{ compra.produto }}</a>
+</td>
+{% empty %} <!--Se não houver curso-->
+<td>
+    Nenhuma compra realizada.
+</td>
+{% endfor %}
+

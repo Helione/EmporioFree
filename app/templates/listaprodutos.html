@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load bootstrap%}
+{% load static %}
+{% block title %}Lista de Produtos{% endblock %}
+
+{% block main %}
+        <div class="row">
+            <div class="col-md">
+                <h1 class="display-12 ">Lista de Produtos LinkTec</h1>
+                <p>Aqui estão os melhores produtos com qualidade e segurança, não perca a oportunidade e aproveite!!</p>
+            </div>
+        </div>
+        <br>
+
+	{% for produto in produtos %}
+        <div class="container">
+        <div class="card text-center">
+          <div class="card-header">
+            {{produto.categoria}}
+          </div>
+            <div class="card ">
+                <a class="card-img-top" href="{{produto.get_slug_field}}">
+                      {% if produto.foto %}
+                        <img src="{{produto.foto.url}}" alt="{{produto.nome}}" width="300" height="300"/>
+                      {% else %}
+                        <img src="{% static 'img/logoClickTec.png' %}" alt="{{produto.nome}}" width="300" height="300">
+                        <br><br>
+                      {% endif %}
+                </a>
+            </div>
+          <div class="card-body">
+            <h5 class="card-title"><a href="{{ produto.get_slug_field }}">{{ produto.nome }}</a></h5>
+            <p class="card-text">{{ produto.descricao|linebreaks }}</p>
+            <a href="{{ produto.get_slug_field }}" class="btn btn-primary">Visualize</a>
+          </div>
+          <div class="card-footer text-muted">
+            2
+          </div>
+        </div>
+
+        <br><br>
+
+
+	{% empty %}
+            <div class="row featurette">
+				<div class="col-md-12">
+					<p>Nenhum produto está disponível na plataforma.</p>
+				</div>
+			</div>
+        </div>
+	{% endfor %}
+
+
+</div>
+
+{% endblock %}
+{% block footer %}
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Compre Tec Aqui</font></font></span>
+      </div>
+    </footer>
+{% endblock %}
+
+<!--https://pythonacademy.com.br/blog/desenvolvimento-web-com-python-e-django-template-->
+<!--https://django-portuguese.readthedocs.io/en/1.0/ref/templates/builtins.html-->

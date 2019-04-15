@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block title %}Página de Recuperação de Senha{% endblock %}
+
+{% block main %}
+
+     <div class="container">
+        <br><br><br>
+          <center>
+              <h4>Informe Seu Email</h4>
+
+            <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="Enviar">
+            <input type="hidden" name="next" value="{{ next }}">
+
+            </form>
+
+         </center>
+    </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

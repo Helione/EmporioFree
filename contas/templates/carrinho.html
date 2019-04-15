@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load bootstrap%}
+{% load static %}
+{% block title %}Carrinho{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 ">
+
+            <table class="table table-striped">
+                <center><h3>Carrinho</h3></center>
+                <thead>
+                     <tr>
+                         <th scope="col"></th>
+                         <th scope="col">Produto</th>
+                         <th scope="col">Imagem</th>
+                     </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <th scope="row">*</th>
+                        {% for compra in compras %}
+                            <td>
+                                <a href="{{ compra.produto.get_slug_field }}" title="" class="list-group-item list-group-item-action"><i class="fas fa-angle-double-right"></i>{{ compra.produto }}</a></td>
+                            <td>
+                                {% if compra.produto.foto %}
+                                     <img src="{{compra.produto.foto.url}}" alt="{{compra.produto.nome}}" width="50" height="50"/>
+
+                                {% else %}
+                                    <img src="{% static 'img/logoClickTec.png' %}" alt="{{compra.produto.nome}}" width="50" height="50"/>
+                                     <br><br>
+                                {% endif %}
+                            </td>
+                        {% empty %} <!--Se não houver curso-->
+                            <td>Nenhuma compra realizada.</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+         </br></br></br>
+        <div class="col-6">
+                </br></br></br>
+                <p><strong>Usuário</strong>: {{ user }}</p>
+                <p><strong>E-mail</strong>: {{ user.email }}</p>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block footer %}
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Compre Tec Aqui</font></font></span>
+      </div>
+    </footer>
+{% endblock %}
