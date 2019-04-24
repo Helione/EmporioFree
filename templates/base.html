@@ -28,7 +28,6 @@
 <body>
  {% if user.is_authenticated %}
     <div class="container-fluid">
-        <div class="jumbotron">
              <div class="row">
                <div class="col-md">
                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,13 +37,14 @@
                       </button>
 
                       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                          <form class="form-inline mr-auto my-2 my-lg-0">
-                              <input class="form-control" type="text"  style="min-width:500px;"placeholder="Pesquisar">
-                              <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+                          <form class="form-inline mr-auto mr-sm-2">
+                              <input class="form-control" type="search"  style="min-width:350px;"placeholder="Pesquisar">
+                              <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
                                   <img src="{% static 'img/lupa.png' %}" width="21" height="21";>
                               </button>
                           </form>
-                        <ul class="navbar-nav  mt-2 mt-lg-0">
+
+                        <ul class="navbar-nav mt-2 mt-lg-0">
                           <li class="nav-item active">
                             <a class="nav-link"  href="{% url 'carrinho' %}" target="_top">
                                 <img src="{%static 'img/carrinho.png' %}" width="47" height="47";>
@@ -59,7 +59,7 @@
                             <a class="nav-link"><h3 class="nav-link active">Olá {{ user.username }} </h3></a>
                           </li>
                           <li class="nav-item">
-                            <a class="btn btn-outline-info nav-link" href="{% url 'logout' %}">Sair</a>
+                            <a class="btn btn-outline-info nav-link  btn-sm my-2 my-sm-0 mr-2 btn-lg btn-block" href="{% url 'logout' %}">Sair</a>
                           </li>
                         </ul>
                       </div>
@@ -73,7 +73,7 @@
                                Categorias
                            </a>
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                               <a class="dropdown-item" href="#" target="_top" >Eletrônicos</a>
+                               <a class="dropdown-item" href="#" target="_top" >Fones</a>
                                <a class="dropdown-item" href="#" target="_top">Informática</a>
                                <div class="dropdown-divider"></div>
                                <a class="dropdown-item" href="#" target="_top">Áudio</a>
@@ -99,9 +99,9 @@
                       </button>
 
                       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                          <form class="form-inline mr-auto my-2 my-lg-0">
-                              <input class="form-control" type="text"  style="min-width:500px;"placeholder="Pesquisar">
-                              <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
+                          <form class="form-inline mr-auto mr-sm-2">
+                              <input class="form-control" type="search"  style="min-width:350px;"placeholder="Pesquisar">
+                              <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
                                   <img src="{% static 'img/lupa.png' %}" width="21" height="21";>
                               </button>
                           </form>
@@ -117,12 +117,12 @@
                             </a>
                           </li>
                           <li class="nav-item">
-                              <a href="{% url 'login' %}" class="nav-link btn btn-primary btn-sm my-2 my-sm-0 mr-2"type="submit">
+                              <a href="{% url 'login' %}" class="nav-link btn btn-info btn-sm btn-lg btn-block"type="submit">
                                   Entrar
                               </a>
                           </li>
                           <li class="nav-item">
-                            <a href="{% url 'cadastrar' %}" class="nav-link btn btn-secondary btn-sm my-2 my-sm-0" type="submit">
+                            <a href="{% url 'cadastrar' %}" class="nav-link btn btn-warning btn-sm btn-lg btn-block" type="submit">
                                             Cadastrar
                             </a>
                           </li>
@@ -157,7 +157,6 @@
 
               </div>
             </div>
-        </div>
     </div>
 
  {%endif%}

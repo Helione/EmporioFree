@@ -75,3 +75,37 @@ class Compra(models.Model):
         verbose_name = 'Compra'
         verbose_name_plural = 'Compras'
         unique_together = (('user', 'produto'),)
+
+class Anuncio(models.Model):
+    produto = models.ForeignKey(Produto, verbose_name='Produto',
+                                on_delete=models.CASCADE)
+    title= models.CharField('Título', max_length=100)
+    conteudo=models.TextField('Conteúdo')
+
+    created_at = models.DateTimeField('Criado em ', auto_now_add=True)
+    update_at = models.DateTimeField('Atualizado em ', auto_now=True)
+
+    def __str__(self):
+        return self.title
+    class Meta:
+        verbose_name = 'Anúncio'
+        verbose_name_plural= 'Anúncios'
+        ordering = ['-created_at']
+
+class Comentario(models.Model):
+    anuncio = models.ForeignKey(
+        Anuncio, verbose_name='Anúncio',
+        on_delete=models.CASCADE,
+        related_name='comentário'
+    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='usuário',
+                             on_delete=models.CASCADE)
+    comentario = models.TextField('Comentário')
+
+    created_at = models.DateTimeField('Criado em ', auto_now_add=True)
+    update_at = models.DateTimeField('Atualizado em ', auto_now=True)
+
+    class Meta:
+        verbose_name= 'Comentário'
+        verbose_name_plural = 'Comentários'
+        ordering = ['created_at']

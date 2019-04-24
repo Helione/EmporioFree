@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register,carrinho, painel, editar, editar_senha, recuperar_senha
+from .views import register,carrinho, painel, editar, editar_senha, recuperar_senha, comprando
 
 urlpatterns = [
     path('cadastrar/', register, name='cadastrar'),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('painel/', painel, name='painel'),
     path('editar/', editar, name='editar'),
     path('editar_senha/', editar_senha, name='editar_senha'),
+    path('comprando/', comprando, name='comprando'),
 
 ]

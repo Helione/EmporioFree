@@ -24,27 +24,29 @@
                 </nav>
 
                 <div class="row">
-                  <div class="col-3">
+                  <div class="col-md-3 col-sm-12">
                     <div class="list-group" id="list-tab" role="tablist">
-                        {% block menu_opcoes%}
-                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#" role="tab" aria-controls="home">Produtos</a>
+                        {% block menu_opcoes %}
+                          <a href="#" class="list-group-item list-group-item-action active">
+                              Produtos</a>
                         {% for compra in compras %}
-                          <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="{% url 'anuncios' compra.produto.slug %}" role="tab" aria-controls="profile"><i class="fas fa-shopping-basket"></i> {{ compra.produto}}</a>
-                        {%empty%}
-                          <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#" role="tab" aria-controls="messages">Nenhum produto encontrado</a>
-                        {% endfor%}
-                          <a class="list-group-item list-group-item-action active" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Configurações</a>
-                          <a class="list-group-item list-group-item-action"  data-toggle="list" href="{% url 'editar'%}" role="tab" aria-controls="editar"><i class="fas fa-tools"></i> Editar Informações</a>
-                          <a class="list-group-item list-group-item-action"  data-toggle="list" href="{% url 'editar_senha'%}" role="tab" aria-controls="editar"><i class="fas fa-lock"> </i> Editar Senha</a>
+                          <a href="{% url 'anuncios' compra.produto.slug %}" class="list-group-item list-group-item-action"><i class="fas fa-shopping-basket"></i> {{ compra.produto }}</a>
+                        {% empty %}
+                          <a class="list-group-item list-group-item-action">Nenhum produto encontrado</a>
+                        {% endfor %}
+                          <a href="#" class="list-group-item list-group-item-action active">Configurações</a>
+                          <a href="{% url 'editar' %}" class="list-group-item list-group-item-action"><i class="fas fa-tools"></i> Editar Informações</a>
+                          <a href="{% url 'editar_senha' %}" class="list-group-item list-group-item-action"><i class="fas fa-lock"></i> Editar Senha</a>
+                        </br></br></br>
                         {%endblock%}
                     </div>
                   </div>
 
-                  <div class="col-9">
+
+                  <div class="col-md-9 col-sm-12">
                         <div class="container">
                             {% block painel_content %}
                             {% for compra in compras %}
-                             <br><br>
                                 <div class="card text-center">
                                   <div class="card-header">
                                     {{compra.produto.categoria}}
@@ -72,5 +74,4 @@
     </div>
 
 {% endblock %}
-{% block footer %}
-{% endblock %}
+

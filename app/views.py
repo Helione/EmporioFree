@@ -29,7 +29,7 @@ def compra(request, slug):
     else:
         messages.success(request, 'A compra já foi realizada!')
 
-    return redirect('painel')
+    return redirect('comprando')
 
 @login_required
 def cancelar_compra(request, slug):

@@ -1,10 +1,32 @@
-{% for compra in compras %}
-<td>
-    <a href="{{ compra.produto.get_slug_field }}" class="list-group-item list-group-item-action">{{ compra.produto }}</a>
-</td>
-{% empty %} <!--Se não houver curso-->
-<td>
-    Nenhuma compra realizada.
-</td>
-{% endfor %}
+{% load static %}
 
+<div class="col-md-10 order-md-2 mb-4" id="list-tab" role="tablist">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Seu Carrinho</span>
+        <span class="badge badge-secondary badge-pill">2</span>
+      </h4>
+
+    <ul class="list-group mb-3">
+        {% for compra in compras %}
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <a href="{% url 'anuncios' compra.produto.slug %}" class=" list-group-item-action"> {{ compra.produto }}
+                {% if compra.produto.foto %}
+                    <img class="rounded mx-auto d-block" src="{{compra.produto.foto.url}}" alt="{{compra.produto.nome}}" width="30" height="30"/>
+                {% else %}
+                    <img class="rounded mx-auto d-block" src="{% static 'img/logoClickTec.png' %}" alt="{{compra.produto.nome}}" width="30" height="30"/>
+                    <br><br>
+                {% endif %}
+                <span class="text-muted">R${{compra.produto.preco}}</span>
+            </a>
+        </li>
+        {%empty%}
+        <a class="list-group-item list-group-item-action">Nenhum produto encontrado</a>
+
+        {%endfor%}
+
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <span>Total</span>
+            <strong>$1,000</strong>
+        </li>
+    </ul>
+</div>

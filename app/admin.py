@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Produto
+from .models import Produto, Compra, Anuncio,Comentario
 # Register your models here.
 
 class ProdutoAdmin(admin.ModelAdmin):
@@ -8,3 +8,4 @@ class ProdutoAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('nome',)}
 
 admin.site.register(Produto, ProdutoAdmin)
+admin.site.register([Compra,Anuncio,Comentario])

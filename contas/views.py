@@ -23,6 +23,11 @@ def painel(request):
     context = {}
     return render(request,'painel.html', context)
 
+@login_required
+def comprando(request):
+    context = {}
+    return render(request,'comprando.html', context)
+
 def register(request):
     # Se dados forem passados via POST
     if request.method == 'POST':
