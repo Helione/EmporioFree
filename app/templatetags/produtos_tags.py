@@ -5,7 +5,7 @@ Library.assignment_tag = Library.simple_tag
 
 
 
-from app.models import Compra
+from app.models import Compra,Produto,Categoria
 
 @register.inclusion_tag('templatetags/my_produtos.html')
 def my_produtos(user):
@@ -15,3 +15,5 @@ def my_produtos(user):
 @register.assignment_tag
 def load_my_produtos(user):
     return Compra.objects.filter(user=user)
+
+

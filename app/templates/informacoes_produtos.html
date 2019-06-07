@@ -1,0 +1,25 @@
+{% extends 'detalheprodutos.html' %}
+{% block informacoes %}
+        <br><br>
+        <main role="main" class="container">
+
+            <div class="blog-post">
+                <h2 class="blog-post-title">Características do Produto</h2>
+                <h4 >{{caracteristicas.produto.nome}}</h4>
+                <a href="{% url 'caracteristicas' produto.slug caracteristicas.pk %}#inftecnica" class="blog-post-title"> Informações Técnicas</a>
+                <p id="inftecnica">{{caracteristicas.inftecnica}}</p>
+                <a href="{% url 'caracteristicas' produto.slug caracteristicas.pk %}#infalergia" class="blog-post-title"> Informações Alergênicos</a>
+                <p id="infalergia">{{caracteristicas.infalergia}}</p>
+                <a href="{% url 'caracteristicas' produto.slug caracteristicas.pk %}#infnutricional" class="blog-post-title"> Informações Nutricionais</a>
+                <p id="infnutricional">{{caracteristicas.infnutricional}}
+                <a href="{% url 'caracteristicas' produto.slug caracteristicas.pk %}#marca" class="blog-post-title"> Informações Sobre a Marca</a>
+                <p id="marca" >{{caracteristicas.marca}}</p>
+                <a href="{% url 'caracteristicas' produto.slug caracteristicas.pk %}#ingredientes" class="blog-post-title"> Ingredientes</a>
+                <p id="ingredientes">{{caracteristicas.ingredientes}}</p>
+                <a href="{% url 'caracteristicas' produto.slug caracteristicas.pk %}#recomendacao" class="blog-post-title"> Recomendações</a>
+                <p id="recomendacao">{{caracteristicas.recomendacao}}</p>
+            </div>
+
+        </main>
+
+{% endblock %}

@@ -12,10 +12,10 @@
             <form method="post">
             {% csrf_token %}
 
-            {{ form.as_p }}
+            {{ form|bootstrap }}
 
-            <input type="submit" value="Enviar">
-            <input type="hidden" name="next" value="{{ next }}">
+            <center><input type="submit" class="btn btn-success" value="Enviar">
+            <input type="hidden" name="next" value="{{ next }}"></center>
 
             </form>
 

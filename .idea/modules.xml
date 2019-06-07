@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/clicktec.iml" filepath="$PROJECT_DIR$/.idea/clicktec.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../linktec/.idea/linktec.iml" filepath="$PROJECT_DIR$/../linktec/.idea/linktec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/emporiofree.iml" filepath="$PROJECT_DIR$/.idea/emporiofree.iml" />
     </modules>
   </component>
 </project>

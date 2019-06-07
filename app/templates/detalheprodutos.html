@@ -4,35 +4,94 @@
 {% block title %}Produto{% endblock %}
 
 {% block main %}
-            <br><br><br><br>
-            <div class="col-md">
+        <style type="text/css">
+            .zoom { overflow: hidden;}
+            .foto {width: 300px; height: 300px;  max-width:100%;  -webkit-transition:all 0.4s;  -moz-transition: all 0.4s; transition: all 0.4s;}
+            .foto:hover {-moz-transform: scale(1.5);-webkit-transform: scale(1.5); transform: scale(1.5);}
+        </style>
+        <br><br><br><br>
+        <div class="container">
+            <div id = "detalhes" class="col-md">
                 <div class="row featurette">
-                  <div class="col-md-7 order-md-2">
-                      <h2 class="featurette-heading"><a href="{{ produto.nome }}" title="">{{ produto }}</a></h2>
-                      <h1 class="card-title pricing-card-title">{{ produto.preco}}</h1>
-                      <p class="card-text mb-auto">{{ produto.descricao|linebreaks }}</p>
+                  <div class="card col-md-7  order-md-2">
+                      <h2 class="featurette-heading"><a href="{{ produto.nome }}" style="color: #6C0">{{ produto }}</a></h2>
+                      <h1 class="card-title pricing-card-title">R$ {{ produto.preco}}</h1>
+                      <p class="card-text ">{{ produto.descricao|linebreaks }}</p>
                       <div class="btn-group">
-                            <a href="{% url 'comprar' produto.slug %}" class="btn btn-outline-info my-2 my-sm-0"> Comprar Agora</a>
-                            <a href="#" class="btn btn-info my-2 my-sm-0"> Adicionar ao Carrinho</a>
+                            <a href="{% url 'comprando' produto.slug %}" class="btn btn-outline-success my-2 my-sm-0"> Comprar Agora</a>
+                            <a href="{% url 'carrinho'%}" class="btn btn-success my-2 my-sm-0"> Adicionar ao Carrinho</a>
                       </div>
-
                   </div>
+
                   <div class="col-md-5 order-md-1">
-                        <a href="{{produto.nome}}">
+                      </br></br>
 							  {% if produto.foto %}
-							  <img class="featurette-image img-fluid mx-auto"src="{{produto.foto.url}}" alt="{{produto.nome}}" width="250" height="250"/>
+                            <div class="zoom">
+							  <img class=" foto featurette-image img-fluid mx-auto"src="{{produto.foto.url}}" alt="{{produto.nome}}" width="250" height="250"/>
+                            </div>
                               <br><br>
 							  {% else %}
 							  <img class="featurette-image img-fluid mx-auto"src="{% static 'img/logoClickTec.png' %}" alt="{{produto.nome}}" width="200" height="250">
 							  <br><br>
 							  {% endif %}
-                        </a>
+
                   </div>
                 </div>
+                {% block informacoes %}
+                    <br><br>
+
+                      <main role="main" class="container">
+                            <div class="blog-post">
+
+                                {% for caracteristicas in produto.caracteristicas.all %}
+
+                                    <h2 class="blog-post-title">Características do Produto</h2>
+                                    <br>
+
+                                    <h3 class="blog-post-title">Informações Técnicas </h3>
+                                    <p>{{caracteristicas.inftecnica}}</p>
+                                    <h3 class="blog-post-title">Informações Alergênicas </h3>
+                                    <p>{{caracteristicas.infalergia|default:"Não possui Informações"}}</p>
+                                    <h3 class="blog-post-title">Informações Nutricionais </h3>
+                                    <p>{{caracteristicas.infnutricional|default:"Não possui Informações"}}
+                                    <h3 class="blog-post-title"> Informações Sobre a Marca</h3>
+                                    <p>{{caracteristicas.marca}}</p>
+                                    <h3 class="blog-post-title"> Ingredientes</h3>
+                                    <p>{{caracteristicas.ingredientes|default:"Não possui Informações"}}</p>
+                                    <h3 class="blog-post-title"> Recomendações </h3>
+                                    <p>{{caracteristicas.recomendacao|default:"Não possui Informações"}}</p>
+
+                                {% endfor %}
+
+                            </div>
+                      </main>
+                {% endblock %}
+
+                {% block detalhe_content %}
+
+                    {% for detalhe in detalhes %}
+                        <br><br>
+                        <a class="btn btn-light my-2 my-sm-0 mr-2 btn-lg" href="{% url 'show_comentario' produto.slug detalhe.pk %}#comentarios"><i class="far fa-comments"></i>
+                          {% with comentarios_count=detalhe.comentarios.count %}
+                             {{ comentarios_count }}
+                             Comentário{{comentarios_count|pluralize }}
+                          {% endwith %}
+                        </a>
+                        <div class="btn-group mr-2" >
+                           <a href="{% url 'show_comentario' produto.slug detalhe.pk %}#add_comentar" class="btn btn-lg btn-warning " disabled>Comentar</a>
+                        </div>
+
+                    {% empty %}
+                        <div>
+                            <h6>Nenhum Comentário Disponível</h6>
+                        </div>
+                    {% endfor %}
+                {% endblock %}
+
             </div>
-            <a href="#"><i class="far fa-comments"></i> Comentários</a>
 
             <hr class="featurette-divider">
+        </div>
 
 
 {% endblock %}

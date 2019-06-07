@@ -4,7 +4,7 @@
     <ul class="navbar nav navbar-expand-sm ">
         {% block painel %}
         <li class="nav-item">
-            <a class="nav-link" href ="{% url 'painel'%}"><i class="fas fa-address-card"> </i> Meu Painel </a>
+            <a class="nav-link" style="color: #666" href ="{% url 'painel'%}"><i class="fas fa-address-card"> </i> Meu Painel </a>
         </li>
         {% endblock %}
     </ul>
@@ -12,13 +12,13 @@
 
     {% block menu_opcoes %}
     <div class="list-group">
-      <a href="#" class="list-group-item list-group-item-action active">
+      <a href="#" class="list-group-item list-group-item-action list-group-item-success">
         Sobre {{ produto }}
       </a>
-      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Informações</a>
-      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Anúncios</a>
-      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Fórum de Dúvidas</a>
-      <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Fornecedores</a>
+      <a href="{% url 'sobre_produto' produto.slug %}" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Sobre o Produto</a>
+      <a href="{% url 'garantia_produto' produto.slug %}" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Garantia</a>
+      <a href="{% url 'forum_de_duvidas' produto.slug %}" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Fórum de Dúvidas</a>
+      <a href="{% url 'fornecedores_produto' produto.slug %}" class="list-group-item list-group-item-action"><i class="fas fa-tag"></i> Fornecedores</a>
     </div>
     {{ block.super }}
     {% endblock %}

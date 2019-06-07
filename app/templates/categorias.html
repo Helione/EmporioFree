@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load bootstrap%}
+{% load static %}
+{% block title %}Categorias{% endblock %}
+
+{% block main %}
+        <div class="row">
+            <div class="col-md">
+                <h1 class="display-12 ">Lista de Categorias {{categoria.nome}} </h1>
+                <p>Aqui estão os melhores produtos com qualidade e segurança, não perca a oportunidade e aproveite!!</p>
+            </div>
+        </div>
+        <br>
+    {% for produto in produtos %}
+            <div class="container">
+            <div class="card text-center">
+              <div class="card-header">
+                {{categoria.nome}}
+              </div>
+                <div class="card ">
+                    <a class="card-img-top" href="{{produto.get_slug_field}}">
+                          {% if produto.foto %}
+                            <img src="{{produto.foto.url}}" alt="{{produto.nome}}" width="300" height="300"/>
+                          {% else %}
+                            <img src="{% static 'img/logoClickTec.png' %}" alt="{{produto.nome}}" width="300" height="300">
+                            <br><br>
+                          {% endif %}
+                    </a>
+                </div>
+              <div class="card-body">
+                <h5 class="card-title"><a style="color: #3C0" href="{{ produto.get_slug_field }}">{{ categoria.produto.nome }}</a></h5>
+                <p class="card-text">{{ produto.descricao|truncatewords:'20' }}</p>
+                <a href="{{ produto.get_slug_field }}" class="btn btn-success">Visualize</a>
+              </div>
+              <div class="card-footer text-muted">
+                2
+              </div>
+            </div>
+
+            <br><br>
+    {% empty %}
+                <div class="row featurette">
+                    <div class="col-md-12">
+                        <p>Nenhum produtos disponíveis nessa Categoria.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+
+
+{% endblock %}
+{% block footer %}
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Compre Tec Aqui</font></font></span>
+      </div>
+    </footer>
+{% endblock %}
+
+<!--https://pythonacademy.com.br/blog/desenvolvimento-web-com-python-e-django-template-->
+<!--https://django-portuguese.readthedocs.io/en/1.0/ref/templates/builtins.html-->

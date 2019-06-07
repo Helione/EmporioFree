@@ -19,165 +19,233 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'stick-footer.css' %}">
     <link rel="stylesheet" href="{% static 'estilo.css' %}">
     <!--CSS Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <style>
+
+      .container-fluid {
+        padding: 60px 50px;
+      }
+      .bg-grey {
+        background-color: #f6f6f6;
+      }
+      .carousel-control.right, .carousel-control.left {
+        background-image: none;
+        color: #f4511e;
+      }
+      .carousel-indicators li {
+        border-color: #f4511e;
+      }
+      .carousel-indicators li.active {
+        background-color: #f4511e;
+      }
+      .item h4 {
+        font-size: 19px;
+        line-height: 1.375em;
+        font-weight: 400;
+        font-style: italic;
+        margin: 70px 0;
+      }
+      .item span {
+        font-style: normal;
+      }
+      .panel {
+        border: 1px solid #f4511e;
+        border-radius:0 !important;
+        transition: box-shadow 0.5s;
+      }
+      .panel:hover {
+        box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+      }
+      .panel-footer .btn:hover {
+        border: 1px solid #f4511e;
+        background-color: #fff !important;
+        color: #f4511e;
+      }
+      .panel-heading {
+        color: #fff !important;
+        background-color: #f4511e !important;
+        padding: 25px;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+      }
+
+      .slideanim {visibility:hidden;}
+      .slide {
+        animation-name: slide;
+        -webkit-animation-name: slide;
+        animation-duration: 1s;
+        -webkit-animation-duration: 1s;
+        visibility: visible;
+      }
+      @keyframes slide {
+        0% {
+          opacity: 0;
+          transform: translateY(70%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+      @-webkit-keyframes slide {
+        0% {
+          opacity: 0;
+          -webkit-transform: translateY(70%);
+        }
+        100% {
+          opacity: 1;
+          -webkit-transform: translateY(0%);
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .col-sm-4 {
+          text-align: center;
+          margin: 25px 0;
+        }
+        .btn-lg {
+          width: 100%;
+          margin-bottom: 35px;
+        }
+      }
+      @media screen and (max-width: 480px) {
+        .logo {
+          font-size: 150px;
+        }
+      }
+  </style>
 
 </head>
 <body>
  {% if user.is_authenticated %}
-    <div class="container-fluid">
+
              <div class="row">
                <div class="col-md">
-                   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                      <a class="navbar-brand" target="_top" href="{% url 'home' %}"><img src="{% static 'img/logolinktecazul.png' %}" width="140" height="110";></a>
+                   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+                      <a class="navbar-brand" target="_top" href="{% url 'home' %}"><img src="{% static '' %}" width="140" height="110";></a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>
 
                       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                          <form class="form-inline mr-auto mr-sm-2">
-                              <input class="form-control" type="search"  style="min-width:350px;"placeholder="Pesquisar">
-                              <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                                  <img src="{% static 'img/lupa.png' %}" width="21" height="21";>
-                              </button>
-                          </form>
 
-                        <ul class="navbar-nav mt-2 mt-lg-0">
-                          <li class="nav-item active">
+
+                              <ul class="navbar-nav mr-auto">
+                                   <li class="nav-item dropdown">
+                                   <a class="nav-link dropdown-toggle" style="color: #666" href="#" target="_top"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fas fa-th"></i>
+                                       Categorias
+                                   </a>
+                                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                           {% for categoria in categorias %}
+                                            <a class="dropdown-item nav-item" href="{{categoria.get_slug_field}}" >{{ categoria.nome }}</a>
+                                           {% endfor %}
+                                       </div>
+                                   </li>
+                                   <li class="nav-item">
+                                       <a class="nav-link" style="color: #666" href="{% url 'listaprodutos'%}" target="_top"><i class="fas fa-list"></i> Todos os Produtos</a>
+                                   </li>
+                                      <form class="form-inline mr-auto mr-sm-4"  action="." method="get">
+                                          <input id="search_box" name="search_box" class="form-control" type="text"  style="min-width:350px;" placeholder="Pesquisar">
+                                          <button class="btn btn-outline-success  my-2 my-sm-0" type="submit">
+                                              <img src="{% static 'img/lupa-verde.png' %}" width="25" height="25";>
+                                          </button>
+                                     </form>
+
+                              </ul>
+
+                          <div class="nav-item">
                             <a class="nav-link"  href="{% url 'carrinho' %}" target="_top">
-                                <img src="{%static 'img/carrinho.png' %}" width="47" height="47";>
+                                <img src="{% static 'img/carrinho2.png' %}" width="40" height="40";>
                                 <span class="sr-only">(current)</span></a>
-                          </li>
-                          <li class="nav-item">
+                          </div>
+                          <div class="nav-item">
                             <a class="nav-link" href="{% url 'painel' %}">
-                                <img  src="{%static 'img/user2.png' %}" width="47" height="47";>
+                                <img  src="{%static 'img/user2.png' %}" width="40" height="40";>
                             </a>
-                          </li>
-                          <li class="nav-item">
+                          </div>
+                          <div class="nav-item">
                             <a class="nav-link"><h3 class="nav-link active">Olá {{ user.username }} </h3></a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="btn btn-outline-info nav-link  btn-sm my-2 my-sm-0 mr-2 btn-lg btn-block" href="{% url 'logout' %}">Sair</a>
-                          </li>
-                        </ul>
+                          </div>
+                          <div class="nav-item">
+                            <a class="btn btn-outline-success nav-link  btn-sm my-2 my-sm-0 mr-2 btn-lg btn-block" href="{% url 'logout' %}">Sair</a>
+                          </div>
                       </div>
                     </nav>
 
-                   <nav>
-                       <ul class="navbar nav sticky-top navbar-expand-sm justify-content-center fonte">
-                           <li class="nav-item dropdown">
-                           <a class="nav-link dropdown-toggle" href="#" target="_top"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               <img href="#" src="{% static 'img/categorizar.png' %}" width="28" height="28">
-                               Categorias
-                           </a>
-                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                               <a class="dropdown-item" href="#" target="_top" >Fones</a>
-                               <a class="dropdown-item" href="#" target="_top">Informática</a>
-                               <div class="dropdown-divider"></div>
-                               <a class="dropdown-item" href="#" target="_top">Áudio</a>
-                           </div>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="{% url 'listaprodutos'%}" target="_top"><i class="fas fa-door-open">  </i> Todos os Produtos</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#" target="_top"><i class="fas fa-phone-volume">  </i> Contatos</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#" target="_top"><i class="fas fa-hands-helping">  </i> Trabalhe Conosco</a>
-                           </li>
-                       </ul>
-                   </nav>
-
  {% else  %}
-                   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                      <a class="navbar-brand" target="_top" href="{% url 'home' %}"><img src="{% static 'img/logolinktecazul.png' %}" width="140" height="110";></a>
+
+                   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+                      <a class="navbar-brand" target="_top" href="{% url 'home' %}"><img src="{% static '' %}" width="140" height="110";></a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                       </button>
 
                       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                          <form class="form-inline mr-auto mr-sm-2">
-                              <input class="form-control" type="search"  style="min-width:350px;"placeholder="Pesquisar">
-                              <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                                  <img src="{% static 'img/lupa.png' %}" width="21" height="21";>
-                              </button>
-                          </form>
-                        <ul class="navbar-nav  mt-2 mt-lg-0">
-                          <li class="nav-item active">
+                           <ul class="navbar-nav mr-auto">
+                                   <li class="nav-item dropdown">
+                                   <a class="nav-link dropdown-toggle" style="color: #666" href="#" target="_top"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <i class="fas fa-th"></i>
+                                       Categorias
+                                   </a>
+                                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                           {% for categoria in categorias %}
+                                            <a class="dropdown-item nav-item" href="{{categoria.get_slug_field}}" >{{ categoria.nome }}</a>
+                                           {% endfor %}
+                                       </div>
+                                   </li>
+                                   <li class="nav-item">
+                                       <a class="nav-link" style="color: #666" href="{% url 'listaprodutos'%}" target="_top"><i class="fas fa-list"></i> Todos os Produtos</a>
+                                   </li>
+                                      <form class="form-inline mr-auto mr-sm-4"  action="." method="get">
+                                          <input id="search_box" name="search_box" class="form-control" type="text"  style="min-width:350px;" placeholder="Pesquisar">
+                                          <button class="btn btn-outline-success  my-2 my-sm-0" type="submit">
+                                              <img src="{% static 'img/lupa-verde.png' %}" width="25" height="25";>
+                                          </button>
+                                     </form>
+
+                           </ul>
+
+                          <div class="nav-item ">
                             <a class="nav-link"  href="{% url 'carrinho' %}" target="_top">
-                                <img src="{%static 'img/carrinho.png' %}" width="47" height="47";>
+                                <img src="{%static 'img/carrinho2.png' %}" width="40" height="40";>
                                 <span class="sr-only">(current)</span></a>
-                          </li>
-                          <li class="nav-item">
+                          </div>
+                          <div class="nav-item">
                             <a class="nav-link" href="{% url 'painel' %}">
-                                <img  src="{%static 'img/user2.png' %}" width="47" height="47";>
+                                <img  src="{%static 'img/usernovo.png' %}" width="40" height="40";>
                             </a>
-                          </li>
-                          <li class="nav-item">
-                              <a href="{% url 'login' %}" class="nav-link btn btn-info btn-sm btn-lg btn-block"type="submit">
+                          </div>
+                          <div class="nav-item">
+                              <a href="{% url 'login' %}" class="nav-link btn btn-light btn-sm btn-lg btn-block"type="submit">
                                   Entrar
                               </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="{% url 'cadastrar' %}" class="nav-link btn btn-warning btn-sm btn-lg btn-block" type="submit">
-                                            Cadastrar
+                          </div>
+                          <div class="nav-item">
+                            <a href="{% url 'cadastrar' %}" class="nav-link btn btn-success btn-sm btn-lg btn-block" type="submit">
+                                Cadastrar
                             </a>
-                          </li>
-                        </ul>
+                          </div>
+
                       </div>
                    </nav>
-                   <nav>
-                       <ul class="navbar  sticky-top nav navbar-expand-sm justify-content-center fonte">
-                           <li class="nav-item dropdown">
-                               <a class="nav-link dropdown-toggle" href="#" target="_top" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   <img href="#" src="{% static 'img/categorizar.png' %}" width="28" height="28">
-                                   Categorias
-                               </a>
-                               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                   <a class="dropdown-item" href="#" target="_top" >Eletrônicos</a>
-                                   <a class="dropdown-item" href="#" target="_top">Informática</a>
-                                   <div class="dropdown-divider"></div>
-                                   <a class="dropdown-item" href="#" target="_top">Áudio</a>
-                               </div>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="{% url 'listaprodutos'%}" target="_top"><i class="fas fa-door-open">  </i> Todos os Produtos</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#" target="_top"><i class="fas fa-phone-volume">  </i> Contatos</a>
-                           </li>
-                           <li class="nav-item">
-                               <a class="nav-link" href="#" target="_top"><i class="fas fa-hands-helping">  </i> Trabalhe Conosco</a>
-                           </li>
-                       </ul>
-                   </nav>
-
               </div>
             </div>
-    </div>
 
- {%endif%}
 
-            {% if messages %} <!--Se houver mensagens exiba-->
-                <aside>
-                    {% for message in messages %}
-                    <p>{{ message }}</p>
-                    {% endfor %}
-                </aside>
-            {% endif%}
+ {% endif %}
 
-            {% block main %}
-            {% endblock %}
-    {% block footer %}
-     <footer class="footer">
-      <div class="container">
-        <span class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sua história em um Roteiro</font></font></span>
-      </div>
-     </footer>
-    {% endblock %}
+ {% block main %}
+
+ {% endblock %}
+
+ {% block footer %}
+
+ {% endblock %}
 
 </body>
 </html>

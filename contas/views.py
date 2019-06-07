@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import authenticate,login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -6,7 +6,7 @@ from django.contrib import messages
 
 from .forms import RegisterForm, EditAccountForm, PasswordResetForm
 from .models import PasswordReset
-from app.models import Compra
+from app.models import Compra,Produto,Categoria
 
 from app.utils import generate_hash_key
 
@@ -20,12 +20,24 @@ def carrinho(request):
 
 @login_required
 def painel(request):
-    context = {}
+    categorias = Categoria.objects.all()
+    produtos=Produto.objects.all()
+
+    var_get_search = request.GET.get('search_box')
+    if var_get_search is not None:
+        produtos = produtos.filter(nome__icontains=var_get_search)
+    context = {
+        'produtos' : produtos,
+        'categorias':categorias,
+    }
     return render(request,'painel.html', context)
 
 @login_required
-def comprando(request):
-    context = {}
+def comprando(request, slug):
+    produto = get_object_or_404(Produto, slug=slug)
+    context = {
+        'produto' : produto
+    }
     return render(request,'comprando.html', context)
 
 def register(request):
@@ -59,7 +71,7 @@ def recuperar_senha(request):
         key = generate_hash_key(user.username)
         reset = PasswordReset(key=key, user=user)
         reset.save()
-        context['sucess'] = True
+        context['success'] = True
     context['form'] = form
     return render(request, 'recuperar_senha.html', context)
 
@@ -70,7 +82,7 @@ def editar(request):
         form = EditAccountForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Os dados da sua conta foram alterados com sucesso!')
+            messages.success(request,'Os Dados foram alterados com Sucesso!')
             return redirect('painel')
     else:
         form = EditAccountForm(instance=request.user)
@@ -84,10 +96,14 @@ def editar_senha(request):
         form = PasswordChangeForm(data=request.POST, user=request.user)
         if form.is_valid():
             form.save()
-            context['sucess'] = True
+            context['success'] = True
         return redirect('painel')
     else:
         form = PasswordChangeForm(user=request.user)
     context['form'] = form
     return render(request, 'editar_senha.html', context)
 
+
+
+#http://pythonclub.com.br/tutorial-django-17.html
+#https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html

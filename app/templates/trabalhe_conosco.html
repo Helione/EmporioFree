@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block title %}Trabalhe Conosco{% endblock %}
+
+{% block main %}
+
+<div class="container">
+				<hr class="featurette-divider">
+
+				<h2>Venha Trabalhar Conosco</h2>
+				<div class="row featurette">
+				  <div class="col-md-7 order-md-2">
+					<h2 class="featurette-heading">Olá <span class="text-muted">Quer fazer parte de nossa Família?</span></h2>
+					<p class="lead">Estamos dispostos a encontrar profissionais criativos, talentosos e com visão de mercado para o crescimento de nossa empresa. Ficou interessado? Então junte-se a nós!</p>
+				  </div>
+				  <div class="col-md-5 order-md-1">
+					<iframe class="w-75" src="https://www.youtube.com/embed/iLmZZV-Nkuk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				  </div>
+				</div>
+
+
+				<hr class="featurette-divider">
+				</br>
+				<h2>Podemos Conhecer você?</h2>
+				</br>
+				<form id="form" class="needs-validation" id="Form" novalidate>
+				  <div class="form-row">
+					<div class="col-md-4 mb-3">
+					  <label for="validationCustom01" >Primeiro nome</label>
+					  <input type="text" class="form-control" id="validationCustom01" placeholder="Nome"  required>
+					  <div class="valid-feedback">
+						Tudo certo!
+					  </div>
+					</div>
+					<div class="col-md-4 mb-3">
+					  <label for="validationCustom02">Sobrenome</label>
+					  <input type="text" class="form-control" id="validationCustom02" placeholder="Sobrenome"  required>
+					  <div class="valid-feedback">
+						Tudo certo!
+					  </div>
+					</div>
+					<div class="col-md-4 mb-3">
+						<label for="exampleInputEmail1">Endereço de email</label>
+						<input type="email" class="form-control" id="validationCustom06" placeholder="fulano@gmail.com" required>
+						<div class="valid-feedback">
+						Tudo certo!
+						</div>
+					</div>
+				  </div>
+
+				  <div class="form-row">
+					<div class="col-md-6 mb-3">
+					  <label for="validationCustom03">Cidade</label>
+					  <input type="text" class="form-control" id="validationCustom03" placeholder="Cidade" required>
+					  <div class="invalid-feedback">
+						Por favor, informe uma cidade válida.
+					  </div>
+					</div>
+					<div class="col-md-3 mb-3">
+					  <label for="validationCustom04">Estado</label>
+					  <input type="text" class="form-control" id="validationCustom04" placeholder="Estado" required>
+					  <div class="invalid-feedback">
+						Por favor, informe um estado válido.
+					  </div>
+					</div>
+					<div class="col-md-3 mb-3">
+					  <label for="validationCustom05">CEP</label>
+					  <input type="text" class="form-control" id="validationCustom05" placeholder="CEP" required>
+					  <div class="invalid-feedback">
+						Por favor, informe um CEP válido.
+					  </div>
+					</div>
+				  </div>
+				  </br>
+				  <div class="form-group">
+					<label for="exampleFormControlFile1">Envie seu currículo</label>
+					<input type="file" class="form-control-file" id="exampleFormControlFile1">
+				  </div>
+				  </br>
+				  <div class="form-group">
+					<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+					  <label class="form-check-label" for="invalidCheck">
+						Concordo com os termos e condições
+					  </label>
+					  <div class="invalid-feedback">
+						Você deve concordar, antes de continuar.
+					  </div>
+					</div>
+				  </div>
+
+				  <center><button class="btn btn-success" type="submit">Enviar</button></center>
+				</form>
+
+</div>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}

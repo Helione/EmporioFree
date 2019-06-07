@@ -54,3 +54,6 @@ class PasswordReset(models.Model):
         verbose_name = 'Nova Senha'
         verbose_name_plural = 'Novas Senhas'
         ordering = ['-created_at']
+
+
+

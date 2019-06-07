@@ -9,7 +9,7 @@
     <ul class="list-group mb-3">
         {% for compra in compras %}
         <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <a href="{% url 'anuncios' compra.produto.slug %}" class=" list-group-item-action"> {{ compra.produto }}
+            <a style="color: #6C0" href="{% url 'anuncios' compra.produto.slug %}" class=" list-group-item-action"> {{ compra.produto }}
                 {% if compra.produto.foto %}
                     <img class="rounded mx-auto d-block" src="{{compra.produto.foto.url}}" alt="{{compra.produto.nome}}" width="30" height="30"/>
                 {% else %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Produto, Compra, Anuncio,Comentario
+from .models import Produto, Compra,Comentario,Detalhe,Caracteristicas,Categoria
 # Register your models here.
 
 class ProdutoAdmin(admin.ModelAdmin):
@@ -7,5 +7,16 @@ class ProdutoAdmin(admin.ModelAdmin):
     search_fields = ['nome', 'slug', 'categoria']
     prepopulated_fields = {'slug':('nome',)}
 
+class CaracteristicasAdmin(admin.ModelAdmin):
+
+    list_display = ['produto', 'marca']
+    search_fields = ['produto', 'inftecnica']
+    list_filter = ['created_at']
+
+class CategoriaAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('produto',)}
+    search_fields = ['produto']
+
 admin.site.register(Produto, ProdutoAdmin)
-admin.site.register([Compra,Anuncio,Comentario])
+admin.site.register([Compra, Comentario, Detalhe,Categoria])
+admin.site.register(Caracteristicas,CaracteristicasAdmin)

@@ -1,17 +1,22 @@
 {% extends 'painel.html' %}
+{% load bootstrap %}
 {% block painel %} <!--block breadcrumb-->
     {{ block.super }}
     <li class="nav-item"> /  </li>
-    <li class="nav-item"><a class="nav-link" href="{% url 'editar' %}"><i class="fas fa-tools"></i> Editar Conta</a></li>
-    <li class="nav-item" > /  </li>
-    <li class="nav-item"><a class="nav-link" href="{% url 'editar_senha' %}"><i class="fas fa-lock"> </i> Editar Senha</a></li>
+    <li class="nav-item"><a class="nav-link" style="color: #666" href="{% url 'editar' %}"><i class="fas fa-tools"></i> Editar Conta</a></li>
+    <li class="nav-item"> /  </li>
+    <li class="nav-item"><a class="nav-link" style="color: #666" href="{% url 'editar_senha' %}"><i class="fas fa-lock"> </i> Editar Senha</a></li>
 {% endblock %}
 {% block painel_content%}<!--block dash_content-->
-        <form method="post">
+    <div class="container">
+        <form class="form-group" method="post">
             <h4>Editar Perfil</h4>
             {% csrf_token %}
-            {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Salvar Modificações</button>
+            {{form|bootstrap}}
+            <center><button type="submit" class="btn btn-success">Alterar</button></center>
         </form>
+    </div>
 
+{% endblock %}
+{% block footer %}
 {% endblock %}

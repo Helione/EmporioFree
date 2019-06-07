@@ -6,13 +6,13 @@
 {% block main %}
         <div class="row">
             <div class="col-md">
-                <h1 class="display-12 ">Lista de Produtos LinkTec</h1>
+                <h1 class="display-12 ">Lista de Produtos EmporioFree</h1>
                 <p>Aqui estão os melhores produtos com qualidade e segurança, não perca a oportunidade e aproveite!!</p>
             </div>
         </div>
         <br>
 
-	{% for produto in produtos %}
+    {% for produto in produtos %}
         <div class="container">
         <div class="card text-center">
           <div class="card-header">
@@ -29,9 +29,9 @@
                 </a>
             </div>
           <div class="card-body">
-            <h5 class="card-title"><a href="{{ produto.get_slug_field }}">{{ produto.nome }}</a></h5>
-            <p class="card-text">{{ produto.descricao|linebreaks }}</p>
-            <a href="{{ produto.get_slug_field }}" class="btn btn-primary">Visualize</a>
+            <h5 class="card-title"><a style="color: #3C0" href="{{ produto.get_slug_field }}">{{ produto.nome }}</a></h5>
+            <p class="card-text">{{ produto.descricao|truncatewords:'20' }}</p>
+            <a href="{{ produto.get_slug_field }}" class="btn btn-success">Visualize</a>
           </div>
           <div class="card-footer text-muted">
             2
@@ -40,18 +40,18 @@
 
         <br><br>
 
-
-	{% empty %}
-            <div class="row featurette">
-				<div class="col-md-12">
-					<p>Nenhum produto está disponível na plataforma.</p>
-				</div>
-			</div>
+    {% empty %}
+                <div class="row featurette">
+                    <div class="col-md-12">
+                        <p>Nenhum produto está disponível na plataforma.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-	{% endfor %}
+
+    {% endfor %}
 
 
-</div>
 
 {% endblock %}
 {% block footer %}

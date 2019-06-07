@@ -11,31 +11,37 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+                {%if messages%}
+                <div class="alert alert-success col-12" role="alert">
+                     {% for message in messages %}
+                        {{ message }}
+                     {% endfor %}
+                </div>
+                {%endif%}
 
-                <nav>
+                    <nav class="col-12">
                     <ul class="navbar nav navbar-expand-sm ">
                         {% block painel %}
                         <li class="nav-item">
-                            <a class="nav-link" href ="{% url 'painel'%}"><i class="fas fa-address-card"> </i> Meu Perfil </a>
+                            <a class="nav-link" style="color: #666" href ="{% url 'painel'%}"><i class="fas fa-address-card"> </i> Meu Perfil </a>
                         </li>
                         {% endblock %}
                     </ul>
                 </nav>
-
+        </div>
                 <div class="row">
-                  <div class="col-md-3 col-sm-12">
+                  <div class="col-5 col-md-3 col-sm-12">
                     <div class="list-group" id="list-tab" role="tablist">
                         {% block menu_opcoes %}
-                          <a href="#" class="list-group-item list-group-item-action active">
+                          <a href="#" class="list-group-item list-group-item-action list-group-item-success">
                               Produtos</a>
                         {% for compra in compras %}
                           <a href="{% url 'anuncios' compra.produto.slug %}" class="list-group-item list-group-item-action"><i class="fas fa-shopping-basket"></i> {{ compra.produto }}</a>
                         {% empty %}
                           <a class="list-group-item list-group-item-action">Nenhum produto encontrado</a>
                         {% endfor %}
-                          <a href="#" class="list-group-item list-group-item-action active">Configurações</a>
-                          <a href="{% url 'editar' %}" class="list-group-item list-group-item-action"><i class="fas fa-tools"></i> Editar Informações</a>
+                          <a href="#" class="list-group-item list-group-item-action list-group-item-success">Configurações</a>
+                          <a href="{% url 'editar' %}" class="list-group-item list-group-item-action"><i class="fas fa-tools"></i> Editar Perfil</a>
                           <a href="{% url 'editar_senha' %}" class="list-group-item list-group-item-action"><i class="fas fa-lock"></i> Editar Senha</a>
                         </br></br></br>
                         {%endblock%}
@@ -43,24 +49,25 @@
                   </div>
 
 
-                  <div class="col-md-9 col-sm-12">
+                  <div class="col-7 col-md-9 col-sm-12">
                         <div class="container">
                             {% block painel_content %}
                             {% for compra in compras %}
                                 <div class="card text-center">
-                                  <div class="card-header">
+                                  <div class="card-header" >
                                     {{compra.produto.categoria}}
                                   </div>
                                     <div class="card-body">
-                                        <h5 class="card-title"><a href="{% url 'anuncios' compra.produto.slug %}">{{ compra.produto }}</a></h5>
+                                        <h5 class="card-title"><a style="color: #6C0" href="{% url 'anuncios' compra.produto.slug %}">{{ compra.produto }}</a></h5>
                                         <p class="card-text">{{ compra.produto.descricao|linebreaks }}</p>
-                                        <a href="{% url 'anuncios' compra.produto.slug %}" class="btn btn-primary btn-sm">Visualize</a>
+                                        <a href="{% url 'anuncios' compra.produto.slug %}" class="btn btn-success btn-sm">Visualize</a>
                                         <a href="{% url 'cancelar_compra' compra.produto.slug %}" class="btn btn-secondary btn-sm">Cancelar</a>
                                     </div>
                                     <div class="card-footer text-muted">
                                         {{compra.produto.start_date|date:'d/m/y'|default:'Sem data'}}
                                     </div>
                                 </div>
+                            <br><br>
                             {% empty %}
                                 <div class="row featurette" role="tabpanel" aria-labelledby="list-messages-list">Nenhum produto disponível</div>
                             {% endfor %}
@@ -69,9 +76,10 @@
 
                   </div>
                 </div>
-            </div>
         </div>
     </div>
 
+{% endblock %}
+{% block footer %}
 {% endblock %}
 
