@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %}Carrinho{% endblock %}
+
+{% block main %}
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-sm-6  ">
+                {%if messages%}
+                    <div class="alert alert-danger col-12" role="alert">
+                     {% for message in messages %}
+                        {{ message }}
+                     {% endfor %}
+                     </div>
+                {%endif%}
+            <form class="" action="" method="post">
+                <h3>Carrinho de Compras</h3>
+                <br>
+                {% csrf_token %}
+                {{ formset.management_form }}
+
+                {{ form.as_table }}
+                 <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Preço</th>
+                      <th scope="col">Quantidade</th>
+                      <th scope="col">Ação</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for form in formset %}
+                        <tr>
+                          <td>{{ form.instance.produto.pk}}</td>
+                          <td>{{ form.instance.produto}}</td>
+                          <td>R$ {{ form.instance.preco|floatformat:"2" }}</td>
+                          <td><input type="number" id="id.quantidade" />
+                          </td>
+                          <td>
+                               {{ form.DELETE }}
+                          </td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+                <p class="text-right">
+                    <a href="{% url 'listaprodutos' %}" class="pull-left btn btn-default">Continuar Compras</a>
+                    <button type="submit" class="btn btn-primary" name="button">Atualizar Carrinho</button></li>
+                    <a href="#" class="btn btn-success">Finalizar Compra</a>
+                </p>
+
+            </form>
+        </div>
+         </br></br></br>
+        <div class="col-md-sm-6">
+                </br></br></br>
+                <p><strong>Usuário</strong>: {{ user }}</p>
+                <p><strong>E-mail</strong>: {{ user.email }}</p>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
