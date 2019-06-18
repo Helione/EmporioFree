@@ -4,18 +4,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 
-from .forms import RegisterForm, EditAccountForm, PasswordResetForm
+
 from .models import PasswordReset
 from app.models import Compra,Produto,Categoria
-
+from .forms import RegisterForm, EditAccountForm, PasswordResetForm
 from app.utils import generate_hash_key
 
 User = get_user_model()
 
-@login_required
-def carrinho(request):
+def carrinho(request, slug):
     context ={}
-    context['compras'] = Compra.objects.filter(user=request.user)
+    context['produto'] =get_object_or_404(Produto, slug=slug)
+
     return render(request,'carrinho.html', context)
 
 @login_required

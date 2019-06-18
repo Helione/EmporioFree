@@ -10,6 +10,7 @@
             .foto:hover {-moz-transform: scale(1.5);-webkit-transform: scale(1.5); transform: scale(1.5);}
         </style>
         <br><br><br><br>
+
         <div class="container">
             <div id = "detalhes" class="col-md">
                 <div class="row featurette">
@@ -17,9 +18,11 @@
                       <h2 class="featurette-heading"><a href="{{ produto.nome }}" style="color: #6C0">{{ produto }}</a></h2>
                       <h1 class="card-title pricing-card-title">R$ {{ produto.preco}}</h1>
                       <p class="card-text ">{{ produto.descricao|linebreaks }}</p>
+                      <h6 class="card-title pricing-card-title">Quantidade <input type="number" id="id_quantidade"/></h6>
+
                       <div class="btn-group">
                             <a href="{% url 'comprando' produto.slug %}" class="btn btn-outline-success my-2 my-sm-0"> Comprar Agora</a>
-                            <a href="{% url 'carrinho'%}" class="btn btn-success my-2 my-sm-0"> Adicionar ao Carrinho</a>
+                            <a href="{% url 'create_cartitem' produto.slug %}" class="btn btn-success my-2 my-sm-0"> Adicionar ao Carrinho</a>
                       </div>
                   </div>
 

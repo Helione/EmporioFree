@@ -56,4 +56,3 @@ class PasswordReset(models.Model):
         ordering = ['-created_at']
 
 
-

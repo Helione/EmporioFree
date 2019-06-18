@@ -40,6 +40,7 @@ class Produto(models.Model):
     def get_slug_field(self):
         return reverse('detalhes', args = [self.slug])
 
+
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
